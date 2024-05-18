@@ -11,7 +11,7 @@ class Block:
         self.timestamp = timestamp or time.time()
         self.timestamp = str(self.timestamp)
         self.data = [] if data is None else data
-        self.difficulty = 4
+        self.difficulty = 6
         # NONCE - номер, который можно использовать лишь раз
         self.nonce = 0
         self.hash = self.get_hash()
@@ -35,7 +35,7 @@ class Block:
 
     # 'Proof-of-work реализация'
     def mine(self, difficulty: int):
-        while Block().is_hypotenuse(int(self.hash[:difficulty + 2], 16)) != True:
+        while Block().is_hypotenuse(int(self.hash[:difficulty ], 16)) != True:
             # делаем новый хэш
             self.nonce += 1
             self.hash = self.get_hash()
